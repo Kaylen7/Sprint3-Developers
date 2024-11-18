@@ -8,7 +8,7 @@ class Database extends Model {
     public function __construct(){
         $dbFile = 'config/database.json';
 
-        $this->fullPath = str_replace("app/models/Database.php", $dbFile, __FILE__);
+        $this->fullPath = dirname(__DIR__, 2) . '/config/database.json';
 
         if(file_exists($this->fullPath)){
             $data = file_get_contents($this->fullPath);
