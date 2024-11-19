@@ -11,7 +11,7 @@
  */
 $routes = array(
 	'/test' => 'test#index',
-	'/home'=> 'view#index',
+	'/'=> 'view#index',
 	'/view'=> 'view#index',
 	'/view/:id'=> 'view#task',
 	'/create'=> 'create#create',
