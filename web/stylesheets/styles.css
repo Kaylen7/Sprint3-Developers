@@ -24,3 +24,13 @@
 .group-hover\:bg-purple:hover {
   background-color: var(--purple);
 }
+
+#state:focus-visible {
+  outline: none; 
+  border: none; 
+}
+
+.back-icon{
+  height: 92vh;
+  margin:3% 5% 0 1%
+}

@@ -5,31 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear tasca</title>
-    <style>
-        select:focus-visible {
-            outline: none;  /* Elimina el contorno */
-            border: none;    /* Elimina el borde */
-        }
-        </style>
 </head>
 
 <body>
     <div class="flex">
-        <div class="flex-initial w-36" style="
-        border-right: 1px solid #cfc1c1;
-    height: 92vh;
-    margin: 3% 5% 0 2%;
-    "
-    >
-    
-        <!-- Icono de "home" (outline) -->
-        <i class="fa fa-arrow-left" aria-hidden="true"></i>
-        <span>Tornar</span>
+        <div class="flex-initial w-36 bg-white text-black p-6 flex border-r-2 mt-10 back-icon">
+            <i class="fa fa-arrow-left mt-[5px]" aria-hidden="true"></i>
+            <span class="ml-[15px]" onclick="window.location.href='/'">Tornar</span>
         </div>
 
         <div class="flex-0  w-[568px]">
 
-            <h1 class="text-4xl mt-16 mb-7 font-bold">Crear</h1>
+            <h1 class="text-6xl mt-16 mb-7 font-bold">Crear</h1>
 
             <form action="/create" method="POST" class="w-full">
 
@@ -62,7 +49,7 @@
                 </span>
 
                 <span class="flex">
-                    <span class=" w-1/2">
+                    <span class=" w-1/2 mt-3">
                         <span class="flex">
                             <label for="start_time" class="font-bold mr-3">De:</label>
                             <input type="datetime-local" id="start_time" name="start_time" required class="">
@@ -94,38 +81,29 @@
 
                 </span>
 
-                <button class="my-9 bg-[#C76FA9] text-white	rounded-[18px] w-[164px] h-[45px]"
-                    type="submit">Crear</button>
+                <button class="my-9 bg-purple text-white rounded-[18px] w-[164px] h-[45px]" type="submit">Crear</button>
             </form>
         </div>
     </div>
-
     <script>
-    function updateCircle() {
-        const select = document.getElementById('state');
-        const selectedValue = select.value;
-        const circle = document.getElementById('circle');
+        function updateCircle() {
+            const select = document.getElementById('state');
+            const selectedValue = select.value;
+            const circle = document.getElementById('circle');
 
-        switch (selectedValue) {
-            case 'ongoing':
-                circle.className = 'w-2 h-2 bg-orange-500 rounded-full mr-2';
-                break;
-            case 'completed':
-                circle.className = 'w-2 h-2 bg-green-500 rounded-full mr-2';
-                break;
-            case 'pending':
-                circle.className = 'w-2 h-2 bg-gray-500 rounded-full mr-2';
-                break;
+            switch (selectedValue) {
+                case 'ongoing':
+                    circle.className = 'w-2 h-2 bg-orange-500 rounded-full mr-2';
+                    break;
+                case 'completed':
+                    circle.className = 'w-2 h-2 bg-green-500 rounded-full mr-2';
+                    break;
+                case 'pending':
+                    circle.className = 'w-2 h-2 bg-gray-500 rounded-full mr-2';
+                    break;
+            }
         }
-    }
-</script>
+    </script>
 </body>
 
 </html>
-
-
-<!-- 
-Mensaje de error o de OK
-O redirigir
-Pasar valores exactos a %
--->
