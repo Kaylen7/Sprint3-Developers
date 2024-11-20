@@ -88,7 +88,37 @@ class Database extends Model {
         $this->tasks = $updated_tasks;
     }
 
+    public function removeTask(string $id): array {
+        foreach($this->tasks as $key => $task) {
+            if ($task['id'] === $id) {
+                unset($this->tasks[$key]);
+                $this->updateDatabase();
+                break;
+            }
+        }
+        return $this->tasks;
+    }
+
+    public function addTask(array $newTask) {
+        $newTask['id'] = uniqid('');
+        do {
+            $taskExists = false;
+            foreach ($this->tasks as $task) {
+                if ($task['id'] === $newTask['id']) {
+                    $taskExists = true;
+                    $newTask['id'] = uniqid('');
+                    break;
+                }
+            }
+        } while ($taskExists);
+    
+        array_push($this->tasks, $newTask);
+        $this->updateDatabase();
+        return $this->tasks;
+    }
+
     private function updateDatabase(){
+        $this->tasks = array_values($this->tasks);
         $baseDB = [];
         $baseDB["tasks"] = $this->tasks;
 
