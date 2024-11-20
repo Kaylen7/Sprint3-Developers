@@ -20,3 +20,7 @@
 .bg-purple {
   background-color: var(--purple);
 }
+
+.group-hover\:bg-purple:hover {
+  background-color: var(--purple);
+}
