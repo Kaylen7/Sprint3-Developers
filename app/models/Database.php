@@ -92,6 +92,7 @@ class Database extends Model {
         foreach($this->tasks as $key => $task) {
             if ($task['id'] === $id) {
                 unset($this->tasks[$key]);
+                $this->tasks = array_values($this->tasks);
                 $this->updateDatabase();
                 break;
             }
@@ -118,7 +119,6 @@ class Database extends Model {
     }
 
     private function updateDatabase(){
-        $this->tasks = array_values($this->tasks);
         $baseDB = [];
         $baseDB["tasks"] = $this->tasks;
 

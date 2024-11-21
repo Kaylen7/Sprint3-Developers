@@ -3,7 +3,7 @@ class CreateController extends ApplicationController
 {
 	public function createAction()
 	{
-			if ($this->isPost()) {
+			if ($this->getRequest()->isPost()) {
 					$title = $_POST['title'] ?? null;
 					$description = $_POST['description'] ?? null;
 					$tags = $_POST['tags'] ?? null;
