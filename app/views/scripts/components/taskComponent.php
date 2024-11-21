@@ -22,8 +22,7 @@ abstract class TaskComponent{
 
         private function setComponent(): void{
             
-            $this->component = 
-            $this->handleColor()
+            $this->component = "<div data-state='" . $this->task['state'] ."' id='". $this->task['id'] . "' class='p-6 rounded-lg flex flex-row flex-nowrap relative group/task pb-0 " . $this->handleColor() . "'>"
             . "<div>"
             . $this->setTitle()
             . $this->setDescription()

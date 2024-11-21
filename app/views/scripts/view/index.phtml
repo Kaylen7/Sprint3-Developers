@@ -26,7 +26,7 @@ include_once($componentsPath . '/interfaces/StateColor.php');
       include $componentsPath . '/html/mainHeader.html';
       ?>
       <!-- TASK GRID -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl">
+      <div id="task-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl">
         <!-- TASKS HERE -->
 
         <?php 
@@ -38,6 +38,7 @@ include_once($componentsPath . '/interfaces/StateColor.php');
       </div>
     </div>
   </div>
-</body>
 
+  <script src="javascripts/view.js"></script>
+</body>
 </html>
