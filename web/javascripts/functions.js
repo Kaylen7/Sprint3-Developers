@@ -33,7 +33,7 @@ function showModal(title, message, buttonText, redirect) {
 
   const closeModal = () => {
     modal.classList.add('hidden');
-    if(redirect) window.location.href='/';
+    if(redirect) window.location.href = redirect;
     
   }
 

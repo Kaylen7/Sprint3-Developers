@@ -12,10 +12,15 @@ class ApplicationController extends Controller
         $this->database = new Database();
     }
     
-	public function showModal($title, $message, $button, $redirect){
+	public function showModal($title, $message, $button, $redirect = false){
 		return "<script>
 		document.addEventListener('DOMContentLoaded', () => {
-				showModal('$title', '$message', '$button',$redirect);
+				showModal(
+										" . json_encode($title) . ",
+						" . json_encode($message) . ",
+						" . json_encode($button) . ",
+						" . json_encode($redirect) . "
+				);
 				});
 				</script>";
 	}
