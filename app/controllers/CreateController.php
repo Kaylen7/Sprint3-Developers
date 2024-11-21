@@ -17,6 +17,18 @@ class CreateController extends ApplicationController
 							echo "Error: Faltan datos.";
 							return;
 					}
+
+					if($start_time > $end_time){
+						
+						echo 
+						"<script>
+								document.addEventListener('DOMContentLoaded', () => {
+										showModal('La data de inici no pot ser posterior a la data de final','Error', 'Torna');
+								});
+						</script>";
+
+						return;
+					}
 	
 					$task = array(
 							'title' => $title,
@@ -29,7 +41,13 @@ class CreateController extends ApplicationController
 					);
 	
 					$this->database->addTask($task);
-					return;
+
+					echo 
+					"<script>
+							document.addEventListener('DOMContentLoaded', () => {
+									showModal('¡Tasca creada!', '¡Tasca creada correctament!', 'Torna',true);
+							});
+					</script>";
 			}
 	}
 	
