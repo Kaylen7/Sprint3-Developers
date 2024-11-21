@@ -31,4 +31,5 @@
 }
 
 .focus\:border-purple {
-  border-color: var(--purple);
+  border-color: var(--purple)
+};
