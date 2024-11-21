@@ -18,7 +18,7 @@ function updateCircle() {
 
 // Message is the message to display in the modal, title is the title of the modal, buttonText is the text of the button, redirect is a boolean to redirect to home or not
 
-function showModal(message, title, buttonText, redirect) {
+function showModal(title, message, buttonText, redirect) {
   const modal = document.getElementById('modal');
   const modalBody = document.getElementById('modalBody');
   const modalTitle = document.getElementById('modalTitle');

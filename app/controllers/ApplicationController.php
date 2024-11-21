@@ -11,4 +11,12 @@ class ApplicationController extends Controller
 	public function __construct(){
         $this->database = new Database();
     }
+    
+	public function showModal($title, $message, $button, $redirect){
+		return "<script>
+		document.addEventListener('DOMContentLoaded', () => {
+				showModal('$title', '$message', '$button',$redirect);
+				});
+				</script>";
+	}
 }

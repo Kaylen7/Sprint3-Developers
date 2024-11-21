@@ -3,7 +3,7 @@ class CreateController extends ApplicationController
 {
 	public function createAction()
 	{
-			if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			if ($this->isPost()) {
 					$title = $_POST['title'] ?? null;
 					$description = $_POST['description'] ?? null;
 					$tags = $_POST['tags'] ?? null;
@@ -20,13 +20,7 @@ class CreateController extends ApplicationController
 
 					if($start_time > $end_time){
 						
-						echo 
-						"<script>
-								document.addEventListener('DOMContentLoaded', () => {
-										showModal('La data de inici no pot ser posterior a la data de final','Error', 'Torna');
-								});
-						</script>";
-
+						echo $this->showModal('Error!', 'La data de inici no pot ser posterior a la data de final', 'Torna', false);
 						return;
 					}
 	
@@ -42,12 +36,7 @@ class CreateController extends ApplicationController
 	
 					$this->database->addTask($task);
 
-					echo 
-					"<script>
-							document.addEventListener('DOMContentLoaded', () => {
-									showModal('¡Tasca creada!', '¡Tasca creada correctament!', 'Torna',true);
-							});
-					</script>";
+					echo $this->showModal('¡Tasca creada!', '¡Tasca creada correctament!', 'Torna',true);
 			}
 	}
 	

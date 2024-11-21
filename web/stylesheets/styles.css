@@ -34,3 +34,9 @@
   height: 92vh;
   margin:3% 5% 0 1%
 }
+
+.modal-position{
+  position: absolute;
+  top: 35%;
+  left: 35%;
+}
