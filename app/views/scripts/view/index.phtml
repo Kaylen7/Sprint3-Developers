@@ -1,5 +1,9 @@
 
-<?php include_once('components/taskComponent.php'); ?>
+<?php 
+$componentsPath =  dirname(__DIR__, 1) . '/components';
+include_once($componentsPath . '/stateTask.php');
+include_once($componentsPath . '/interfaces/StateColor.php');
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,61 +17,14 @@
 
 <body class="bg-white">
   <div class="flex h-screen">
-    <!-- MENU -->
-    <div class="bg-white text-black p-6 flex flex-col justify-between border-r-2 mt-10">
-      <h1 class="text-3xl font-bold mb-4 text-center">Accions</h1>
-      <div class="flex flex-col flex-1">
-        <!-- CREATE -->
-        <div class="flex flex-col items-center group">
-          <a href="/create" class="bg-black rounded-full text-white p-3 group-hover:bg-purple focus:outline-none">
-            <i class="w-6 h-5 text-center fa-solid fa-plus"></i>
-          </a>
-          <span class="mt-2 opacity-0 group-hover:opacity-100 group-hover:mb-4 transition-opacity">Crear</span>
-        </div>
-        <!-- DELETE -->
-        <div class="flex flex-col items-center group">
-          <a href="/delete-mode" class="bg-black rounded-full text-white p-3 group-hover:bg-purple focus:outline-none">
-            <i class="w-6 h-5 text-center fa-solid fa-minus"></i>
-          </a>
-          <span class="mt-2 opacity-0 group-hover:opacity-100 group-hover:mb-4 transition-opacity">Eliminar</span>
-        </div>
-        <hr />
-        <!-- FILTRES -->
-        <h1 class="text-3xl font-bold mt-4 mb-4 text-center">Filtres</h1>
-        <!-- DONE -->
-        <div class="flex flex-col items-center group">
-          <div class="relative">
-            <button class="bg-green rounded-full text-white p-2 group-hover:p-4 focus:outline-none w-5 h-5">
-            </button>
-          </div>
-          <span class="mt-1 opacity-0 group-hover:opacity-100 group-hover:mb-4 transition-opacity">Acabades</span>
-        </div>
-        <!-- ONGOING -->
-        <div class="flex flex-col items-center group">
-          <div class="relative">
-            <button class="bg-orange rounded-full text-white p-2 group-hover:p-4 focus:outline-none w-5 h-5">
-            </button>
-          </div>
-          <span class="mt-1 opacity-0 group-hover:opacity-100 group-hover:mb-4 transition-opacity">En curs</span>
-        </div>
-        <!-- PENDING -->
-        <div class="flex flex-col items-center group">
-          <div class="relative">
-            <button class="bg-gray rounded-full text-white p-2 group-hover:p-4 focus:outline-none w-5 h-5">
-            </button>
-          </div>
-          <span class="mt-1 opacity-0 group-hover:opacity-100 group-hover:mb-4 transition-opacity">Pendents</span>
-        </div>
-
-      </div>
-    </div>
+    <?php 
+    include $componentsPath . '/html/sideMenu.html';
+    ?>
     <!-- MAIN DIV -->
     <div class="flex-1 p-6 overflow-y-auto">
-      <h1 class="text-6xl font-bold mb-4 mt-4">Tasques</h1>
-      <div class="flex flex-row mb-4 ml-4 w-screen items-center gap-3">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" value="" placeholder="search" class="mt-1 block w-auto px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-purple focus:ring-1 focus:purple focus:w-1/4"/>
-      </div>
+      <?php 
+      include $componentsPath . '/html/mainHeader.html';
+      ?>
       <!-- TASK GRID -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl">
         <!-- TASKS HERE -->
@@ -75,13 +32,12 @@
         <?php 
             $tasks = $this->tasks;
             foreach($tasks as $task){
-                new taskComponent($task);
+                new stateTask($task, new StateColor());
             }
         ?>
       </div>
     </div>
   </div>
-  <script src="javascripts/view.js"></script>
 </body>
 
 </html>

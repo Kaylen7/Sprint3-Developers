@@ -20,3 +20,16 @@
 .bg-purple {
   background-color: var(--purple);
 }
+
+.group-hover\:bg-purple:hover {
+  background-color: var(--purple);
+}
+
+.focus\:purple:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: var(--purple);
+}
+
+.focus\:border-purple {
+  border-color: var(--purple);
+}
