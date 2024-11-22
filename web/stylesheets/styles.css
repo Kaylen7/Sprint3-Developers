@@ -56,3 +56,7 @@
   top: 35%;
   left: 35%;
 }
+
+.group-focus-within\:bg-purple:focus {
+  background-color: var(--purple);
+}
