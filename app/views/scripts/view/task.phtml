@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea Detallada</title>
+</head>
+<body>
+    <?php if (!empty($task)): ?>
+
+      <div>
+        <div>
+          <h1 class="text-6xl mt-16 mb-7 font-bold"><?= $task['title'] ?></h1>
+          
+          <span class="flex">
+            <div id="circle-container" class="flex justify-between items-center pointer-events-none">
+                <span id="circle" class="w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
+            </div>
+            <?= $task['state'] ?>
+          </span>
+        </div>  
+
+        <div>
+
+          <div> <?= is_array($task['tags']) ? implode(' ', $array_mapped = array_map(function ($array_item){ return '#'.$array_item; }, $task['tags'])) : ''; ?> </div>
+
+          <div>
+          <?= $task['description'] ?>
+          </div>
+          <div>@<?= $task['created_by'] ?></div>
+        </div>
+
+        <div class="relative mt-8" style="width: 385px;">
+          <?php 
+                $startTimestamp = $task['start_time']; 
+                $endTimestamp = $task['end_time'];
+                include 'components/calendar.phtml';
+          ?>
+        </div>
+  </div>
+    <?php endif; ?>
+
+</body>
+</html>
