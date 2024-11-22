@@ -20,10 +20,26 @@
 .bg-purple {
   background-color: var(--purple);
 }
+.peer.hover\:bg-purple:hover {
+  background-color: var(--purple);
+}
+
+.peer.focus\:bg-purple:focus {
+  background-color: var(--purple);
+}
 
 .group-hover\:bg-purple:hover {
   background-color: var(--purple);
 }
+
+.focus\:purple:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: var(--purple);
+}
+
+.focus\:border-purple {
+  border-color: var(--purple)
+};
 
 #state:focus-visible {
   outline: none; 
@@ -39,4 +55,8 @@
   position: absolute;
   top: 35%;
   left: 35%;
+}
+
+.group-focus-within\:bg-purple:focus {
+  background-color: var(--purple);
 }
