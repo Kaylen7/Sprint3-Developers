@@ -14,10 +14,7 @@ class deleteModeTask extends taskComponent {
 
     public function handleColor(): string {
         $color = $this->colorInterface->setColor('inactive');
-        $htmlColor = "<div class='$color p-6 rounded-lg flex flex-row flex-nowrap relative group/task pb-0' id='" 
-                  . $this->task['id'] . 
-                  "'>";
-        return $htmlColor;
+        return $color;
       }
 
     
