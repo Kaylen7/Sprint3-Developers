@@ -2,6 +2,7 @@
 <?php 
 $componentsPath =  dirname(__DIR__, 1) . '/components';
 include_once($componentsPath . '/stateTask.php');
+include_once($componentsPath . '/sideMenuComponent.php');
 include_once($componentsPath . '/interfaces/StateColor.php');
 ?>
 
@@ -18,7 +19,7 @@ include_once($componentsPath . '/interfaces/StateColor.php');
 <body class="bg-white">
   <div class="flex h-screen">
     <?php 
-    include $componentsPath . '/html/sideMenu.html';
+      new sideMenuComponent('main');
     ?>
     <!-- MAIN DIV -->
     <div class="flex-1 p-6 overflow-y-auto">
