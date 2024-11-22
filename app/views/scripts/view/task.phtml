@@ -1,3 +1,29 @@
+<?php
+$componentsPath = dirname(__DIR__, 1) . '/components';
+
+if (empty($sidebarIncluded)) {
+    include_once($componentsPath . '/sideMenuComponent.php');
+}
+
+$circleColorClass = '';
+$status = '';
+if (isset($task) && !empty($task)) {
+    switch ($task['state']) {
+        case 'ongoing':
+            $circleColorClass = 'bg-[#FFC76C]';
+            $status = 'En curs';
+            break;
+        case 'done':
+            $circleColorClass = 'bg-[#6FC685]';
+            $status = 'Acabada';
+            break;
+        case 'pending':
+            $circleColorClass = 'bg-[#D9D9D9]';
+            $status = 'Pendent';
+            break;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,40 +31,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarea Detallada</title>
 </head>
-<body>
-    <?php if (!empty($task)): ?>
+<body class="bg-white flex">
+<?php 
+    if (empty($sidebarIncluded)) {
+      new sideMenuComponent('back');
+    }?>
+<div class="flex h-screen order-1 w-full">
 
-      <div>
+    <?php if (!empty($task)): ?>
+      <div class="w-10/12	 ml-16 max-w-[755px]">
         <div>
-          <h1 class="text-6xl mt-16 mb-7 font-bold"><?= $task['title'] ?></h1>
+          <h1 class="text-6xl mt-16 mb-7 font-bold break-words whitespace-normal w-3/4"><?= $task['title'] ?></h1>
           
           <span class="flex">
             <div id="circle-container" class="flex justify-between items-center pointer-events-none">
-                <span id="circle" class="w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
+              <span id="circle" class="w-4 h-4 <?= $circleColorClass ?> rounded-full mr-2"></span>
             </div>
-            <?= $task['state'] ?>
+            <?= $status ?>
           </span>
         </div>  
 
-        <div>
+        <div class="mt-12 w-3/5">
 
-          <div> <?= is_array($task['tags']) ? implode(' ', $array_mapped = array_map(function ($array_item){ return '#'.$array_item; }, $task['tags'])) : ''; ?> </div>
-
-          <div>
-          <?= $task['description'] ?>
-          </div>
-          <div>@<?= $task['created_by'] ?></div>
+          <div class="mb-6"> 
+          <?php 
+    if (is_array($task['tags'])) {
+        $tagsWithHash = array_map(function ($array_item) {
+            return '<span>#' . $array_item . '</span>';
+        }, $task['tags']);
+        echo implode(' ', $tagsWithHash); 
+    }
+  ?>
         </div>
 
-        <div class="relative mt-8" style="width: 385px;">
+          <div class="break-words whitespace-normal">
+          <?= $task['description'] ?>
+          </div>
+          <div class="font-bold mr-8 text-right mt-2">
+            @<?= $task['created_by'] ?>
+          </div>
+        </div>
+
+        <div class="relative mt-8 mr-60 w-96 justify-self-center scale-[0.85]">
           <?php 
                 $startTimestamp = $task['start_time']; 
                 $endTimestamp = $task['end_time'];
                 include 'components/calendar.phtml';
           ?>
         </div>
+        <button class="my-9 bg-purple text-white rounded-[18px] w-[164px] h-[45px]" onclick="window.location.href='/edit/id-placeholder'"> Editar </button>
   </div>
     <?php endif; ?>
-
+    </div>
 </body>
 </html>

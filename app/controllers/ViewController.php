@@ -10,26 +10,14 @@ class ViewController extends ApplicationController{
     public function taskAction()
     {
       $id = $this->_namedParameters['id'] ?? null;
-      if ($id === null) {
-        $this->renderView('error', ['message' => "El parámetro 'id' es obligatorio."]);
-        return;
-    }
-    
-        $task = $this->database->getTask($id);
-  
-        if (empty($task)) {
-          $this->renderView('error', ['message' => "La tarea no existe."]);
-          return;
-      }      
-      $this->renderView('task', ['task' => $task]);
-    }
-    
-    protected function renderView(string $view, array $data = []) {
-      extract($data);
+      $task = $this->database->getTask($id);  
 
-      $viewPath = realpath(__DIR__ . "/../views/scripts/view/$view.phtml");
-      if ($viewPath && file_exists($viewPath)) {
-          include $viewPath;
-      }
+      extract([
+        'task' => $task,
+        'sidebarIncluded' => true, //My sidebar was duplicated, with this line I am avoiding it
+    ]);
+
+    include __DIR__ . "/../views/scripts/view/task.phtml";
     }
+
 }

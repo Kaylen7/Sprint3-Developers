@@ -5,13 +5,13 @@ function updateCircle() {
 
   switch (selectedValue) {
       case 'ongoing':
-          circle.className = 'w-2 h-2 bg-orange-500 rounded-full mr-2';
+          circle.className = 'w-4 h-4 bg-orange-500 rounded-full mr-2';
           break;
-      case 'completed':
-          circle.className = 'w-2 h-2 bg-green-500 rounded-full mr-2';
+      case 'done':
+          circle.className = 'w-4 h-4 bg-green-500 rounded-full mr-2';
           break;
       case 'pending':
-          circle.className = 'w-2 h-2 bg-gray-500 rounded-full mr-2';
+          circle.className = 'w-4 h-4 bg-gray-500 rounded-full mr-2';
           break;
   }
 }
