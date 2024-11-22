@@ -1,0 +1,86 @@
+<!-- components/calendar.phtml -->
+<div id="calendar-component" class="bg-white p-6 rounded-lg shadow-lg">
+    <h2 class="text-2xl font-bold mb-4 text-center" id="title">Calendario</h2>
+    <div id="calendar" class="grid grid-cols-7"></div>
+</div>
+
+<script>
+    function createCalendar(startTimestamp, endTimestamp) {
+        const calendarElement = document.getElementById('calendar');
+        calendarElement.innerHTML = '';
+
+        const startDate = new Date(startTimestamp * 1000);
+        const endDate = new Date(endTimestamp * 1000);
+
+        const startMonth = startDate.getMonth();
+        const startYear = startDate.getFullYear();
+
+        function generateDays(year, month) {
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            const firstDayOfWeek = firstDay.getDay();
+            const totalDays = lastDay.getDate();
+            let days = [];
+
+            const daysToShift = (firstDayOfWeek === 0) ? 6 : firstDayOfWeek - 1;
+
+            for (let i = 0; i < daysToShift; i++) {
+                days.push('');
+            }
+
+            for (let i = 1; i <= totalDays; i++) {
+                days.push(i);
+            }
+
+            return days;
+        }
+
+        function isInRange(date) {
+            const startMidnight = new Date(startDate.setHours(0, 0, 0, 0));
+            const endMidnight = new Date(endDate.setHours(23, 59, 59, 999));
+            return date >= startMidnight.getTime() && date <= endMidnight.getTime();
+        }
+
+        const days = generateDays(startYear, startMonth);
+        const monthName = new Date(startYear, startMonth).toLocaleString('ca-ES', { month: 'long' });
+
+        document.getElementById('title').textContent = `${monthName} ${startYear}`;
+
+        const header = ['Dl', 'Dm', 'Dc', 'Dj', 'Dv', 'Ds', 'Dg'];
+        header.forEach(day => {
+            const dayElement = document.createElement('div');
+            dayElement.classList.add('text-center', 'font-semibold');
+            dayElement.textContent = day;
+            calendarElement.appendChild(dayElement);
+        });
+
+        days.forEach(day => {
+            const dayElement = document.createElement('div');
+            dayElement.classList.add('h-12', 'w-12', 'flex', 'items-center', 'justify-center', 'cursor-pointer', 'transition-all');
+            
+            if (day === '') {
+                dayElement.classList.add('bg-gray-100');
+            } else {
+                const currentDate = new Date(startYear, startMonth, day);
+                const timestamp = currentDate.getTime();
+
+                if (timestamp === startTimestamp * 1000) {
+                    dayElement.classList.add('bg-green-500', 'text-white', 'font-bold');
+                } else if (timestamp === endTimestamp * 1000) {
+                    dayElement.classList.add('bg-red-500', 'text-white', 'font-bold');
+                } else if (isInRange(timestamp)) {
+                    dayElement.classList.add('bg-[#FFC76C]', 'font-bold');
+                } else {
+                    dayElement.classList.add('text-gray-700');
+                }
+                dayElement.textContent = day;
+            }
+
+            calendarElement.appendChild(dayElement);
+        });
+    }
+
+    const startTimestamp = <?= $startTimestamp ?>;
+    const endTimestamp = <?= $endTimestamp ?>;
+    createCalendar(startTimestamp, endTimestamp);
+</script>
