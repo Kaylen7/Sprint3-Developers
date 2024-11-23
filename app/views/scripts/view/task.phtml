@@ -1,28 +1,7 @@
 <?php
 $componentsPath = dirname(__DIR__, 1) . '/components';
-
-if (empty($sidebarIncluded)) {
-    include_once($componentsPath . '/sideMenuComponent.php');
-}
-
-$circleColorClass = '';
-$status = '';
-if (isset($task) && !empty($task)) {
-    switch ($task['state']) {
-        case 'ongoing':
-            $circleColorClass = 'bg-[#FFC76C]';
-            $status = 'En curs';
-            break;
-        case 'done':
-            $circleColorClass = 'bg-[#6FC685]';
-            $status = 'Acabada';
-            break;
-        case 'pending':
-            $circleColorClass = 'bg-[#D9D9D9]';
-            $status = 'Pendent';
-            break;
-    }
-}
+include_once($componentsPath . '/sideMenuComponent.php');
+include_once($componentsPath . '/stateComponent.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,56 +11,45 @@ if (isset($task) && !empty($task)) {
     <title>Tarea Detallada</title>
 </head>
 <body class="bg-white flex">
-<?php 
-    if (empty($sidebarIncluded)) {
-      new sideMenuComponent('back');
-    }?>
+<?php new sideMenuComponent('back'); ?>
 <div class="flex h-screen order-1 w-full">
+        <div class="w-10/12 ml-16 max-w-[755px]">
+            <div>
+                <h1 class="text-6xl mt-16 mb-7 font-bold break-words whitespace-normal w-3/4"><?= $this->task['title'] ?></h1>
+                
+                <?php renderStateComponent($this->task['state']); ?>
 
-    <?php if (!empty($task)): ?>
-      <div class="w-10/12	 ml-16 max-w-[755px]">
-        <div>
-          <h1 class="text-6xl mt-16 mb-7 font-bold break-words whitespace-normal w-3/4"><?= $task['title'] ?></h1>
-          
-          <span class="flex">
-            <div id="circle-container" class="flex justify-between items-center pointer-events-none">
-              <span id="circle" class="w-4 h-4 <?= $circleColorClass ?> rounded-full mr-2"></span>
+            </div>  
+
+            <div class="mt-12 w-3/5">
+                <div class="mb-6"> 
+                    <?php 
+                    if (is_array($this->task['tags'])) {
+                        $tagsWithHash = array_map(function ($array_item) {
+                            return '<span>#' . $array_item . '</span>';
+                        }, $this->task['tags']);
+                        echo implode(' ', $tagsWithHash); 
+                    }
+                    ?>
+                </div>
+
+                <div class="break-words whitespace-normal">
+                    <?= $this->task['description'] ?>
+                </div>
+                <div class="font-bold mr-8 text-right mt-2">
+                    @<?= $this->task['created_by'] ?>
+                </div>
             </div>
-            <?= $status ?>
-          </span>
-        </div>  
 
-        <div class="mt-12 w-3/5">
-
-          <div class="mb-6"> 
-          <?php 
-    if (is_array($task['tags'])) {
-        $tagsWithHash = array_map(function ($array_item) {
-            return '<span>#' . $array_item . '</span>';
-        }, $task['tags']);
-        echo implode(' ', $tagsWithHash); 
-    }
-  ?>
+            <div class="relative mt-8 mr-60 w-96 justify-self-center scale-[0.85]">
+                <?php 
+                    $startTimestamp = $this->task['start_time']; 
+                    $endTimestamp = $this->task['end_time'];
+                    include dirname(__DIR__, 1) . '/components/html/calendar.phtml';
+                ?>
+            </div>
+            <button class="my-9 bg-purple text-white rounded-[18px] w-[164px] h-[45px]" onclick="window.location.href='/edit/id-placeholder'">Editar</button>
         </div>
-
-          <div class="break-words whitespace-normal">
-          <?= $task['description'] ?>
-          </div>
-          <div class="font-bold mr-8 text-right mt-2">
-            @<?= $task['created_by'] ?>
-          </div>
-        </div>
-
-        <div class="relative mt-8 mr-60 w-96 justify-self-center scale-[0.85]">
-          <?php 
-                $startTimestamp = $task['start_time']; 
-                $endTimestamp = $task['end_time'];
-                include 'components/calendar.phtml';
-          ?>
-        </div>
-        <button class="my-9 bg-purple text-white rounded-[18px] w-[164px] h-[45px]" onclick="window.location.href='/edit/id-placeholder'"> Editar </button>
-  </div>
-    <?php endif; ?>
-    </div>
+</div>
 </body>
 </html>
