@@ -1,0 +1,55 @@
+<?php
+$componentsPath = dirname(__DIR__, 1) . '/components';
+include_once($componentsPath . '/sideMenuComponent.php');
+include_once($componentsPath . '/stateComponent.php');
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea Detallada</title>
+</head>
+<body class="bg-white flex">
+<?php new sideMenuComponent('back'); ?>
+<div class="flex h-screen order-1 w-full">
+        <div class="w-10/12 ml-16 max-w-[755px]">
+            <div>
+                <h1 class="text-6xl mt-16 mb-7 font-bold break-words whitespace-normal w-3/4"><?= $this->task['title'] ?></h1>
+                
+                <?php renderStateComponent($this->task['state']); ?>
+
+            </div>  
+
+            <div class="mt-12 w-3/5">
+                <div class="mb-6"> 
+                    <?php 
+                    if (is_array($this->task['tags'])) {
+                        $tagsWithHash = array_map(function ($array_item) {
+                            return '<span>#' . $array_item . '</span>';
+                        }, $this->task['tags']);
+                        echo implode(' ', $tagsWithHash); 
+                    }
+                    ?>
+                </div>
+
+                <div class="break-words whitespace-normal">
+                    <?= $this->task['description'] ?>
+                </div>
+                <div class="font-bold mr-8 text-right mt-2">
+                    @<?= $this->task['created_by'] ?>
+                </div>
+            </div>
+
+            <div class="relative mt-8 mr-60 w-96 justify-self-center scale-[0.85]">
+                <?php 
+                    $startTimestamp = $this->task['start_time']; 
+                    $endTimestamp = $this->task['end_time'];
+                    include dirname(__DIR__, 1) . '/components/html/calendar.phtml';
+                ?>
+            </div>
+            <button class="my-9 bg-purple text-white rounded-[18px] w-[164px] h-[45px]" onclick="window.location.href='/edit/id-placeholder'">Editar</button>
+        </div>
+</div>
+</body>
+</html>

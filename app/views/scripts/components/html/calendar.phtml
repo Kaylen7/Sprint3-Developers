@@ -1,0 +1,103 @@
+<div id="calendar-component" class="bg-white p-6">
+    <div class="flex justify-between items-center mb-4">
+        <button id="prev-month" class="bg-gray-200 px-3 py-1 rounded hover:bg-gray-300">←</button>
+        <h2 class="text-2xl font-bold text-center" id="title"></h2>
+        <button id="next-month" class="bg-gray-200 px-3 py-1 rounded hover:bg-gray-300">→</button>
+    </div>
+    <div id="calendar" class="grid grid-cols-7"></div>
+</div>
+
+<script>
+    function createCalendar(startTimestamp, endTimestamp) {
+        const calendarElement = document.getElementById('calendar');
+        const titleElement = document.getElementById('title');
+        const prevButton = document.getElementById('prev-month');
+        const nextButton = document.getElementById('next-month');
+
+        const startDate = new Date(startTimestamp * 1000);
+        const endDate = new Date(endTimestamp * 1000);
+
+        let currentDate = new Date(startTimestamp * 1000);
+
+        function generateDays(year, month) {
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            const firstDayOfWeek = firstDay.getDay() === 0 ? 6 : firstDay.getDay() - 1;
+            const totalDays = lastDay.getDate();
+            let days = [];
+
+            for (let i = 0; i < firstDayOfWeek; i++) {
+                days.push('');
+            }
+
+            for (let i = 1; i <= totalDays; i++) {
+                days.push(i);
+            }
+
+            return days;
+        }
+
+        function isInRange(date) {
+            const startMidnight = new Date(startDate.setHours(0, 0, 0, 0));
+            const endMidnight = new Date(endDate.setHours(23, 59, 59, 999));
+            return date >= startMidnight.getTime() && date <= endMidnight.getTime();
+        }
+
+        function renderCalendar(year, month) {
+            calendarElement.innerHTML = '';
+
+            const monthName = new Date(year, month).toLocaleString('ca-ES', { month: 'long' });
+            titleElement.textContent = `${monthName} ${year}`;
+
+            const header = ['Dl', 'Dm', 'Dc', 'Dj', 'Dv', 'Ds', 'Dg'];
+            header.forEach(day => {
+                const dayElement = document.createElement('div');
+                dayElement.classList.add('text-center', 'font-semibold');
+                dayElement.textContent = day;
+                calendarElement.appendChild(dayElement);
+            });
+
+            const days = generateDays(year, month);
+            days.forEach(day => {
+                const dayElement = document.createElement('div');
+                dayElement.classList.add('h-12', 'w-12', 'flex', 'items-center', 'justify-center', 'cursor-pointer', 'transition-all');
+
+                if (day === '') {
+                    dayElement.classList.add('bg-gray-100');
+                } else {
+                    const currentDate = new Date(year, month, day);
+                    const timestamp = currentDate.getTime();
+
+                    if (timestamp === startTimestamp * 1000) {
+                        dayElement.classList.add('bg-green-500', 'text-white', 'font-bold');
+                    } else if (timestamp === endTimestamp * 1000) {
+                        dayElement.classList.add('bg-red-500', 'text-white', 'font-bold');
+                    } else if (isInRange(timestamp)) {
+                        dayElement.classList.add('bg-[#FFC76C]', 'font-bold');
+                    } else {
+                        dayElement.classList.add('text-gray-700');
+                    }
+                    dayElement.textContent = day;
+                }
+
+                calendarElement.appendChild(dayElement);
+            });
+        }
+
+        prevButton.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar(currentDate.getFullYear(), currentDate.getMonth());
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar(currentDate.getFullYear(), currentDate.getMonth());
+        });
+
+        renderCalendar(currentDate.getFullYear(), currentDate.getMonth());
+    }
+
+    const startTimestamp = <?= $startTimestamp ?>;
+    const endTimestamp = <?= $endTimestamp ?>;
+    createCalendar(startTimestamp, endTimestamp);
+</script>
