@@ -4,6 +4,8 @@ class viewTaskComponent {
 
     private string $component;
     private string $htmlPath;
+    private string $type;
+
     const PLACEHOLDER_LITERALS = [
         'title' => "Introdueix un titol per a la tasca",
         'description' => "Introdueix una descripció per a la tasca",
@@ -20,11 +22,10 @@ class viewTaskComponent {
     const ACTION_PLACEHOLDER = '#form_action';
 
     public function __construct(
-        private array $task,
-        private string $type //edit, create
+        private array $task = []
     ){
         $this->htmlPath = dirname(__FILE__, 2) . "/components/html/";
-        
+        $this->type = count($this->task) > 0 ? 'edit' : 'create';
         $this->setComponent();
         $this->render();
     }
