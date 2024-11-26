@@ -48,7 +48,7 @@ include_once($componentsPath . '/stateComponent.php');
                     include dirname(__DIR__, 1) . '/components/html/calendar.phtml';
                 ?>
             </div>
-            <button class="my-9 bg-purple text-white rounded-[18px] w-[164px] h-[45px]" onclick="window.location.href='/edit/id-placeholder'">Editar</button>
+            <button class="my-9 bg-purple text-white rounded-[18px] w-[164px] h-[45px]" onclick="window.location.href='<?= '/edit' . '/' . $this->task['id'];?>'">Editar</button>
         </div>
 </div>
 </body>
