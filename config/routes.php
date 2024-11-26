@@ -15,6 +15,7 @@ $routes = array(
 	'/view'=> 'view#index',
 	'/view/:id'=> 'view#task',
 	'/create'=> 'create#create',
-	'/delete-mode'=> 'delete#delete',
+	'/delete'=> 'delete#delete',
+	'/deleteTasks'=> 'delete#deleteTasks',
 	'/edit/:id'=> 'edit#update',
 );

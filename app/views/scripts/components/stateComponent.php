@@ -19,13 +19,13 @@ function renderStateComponent($state)
             break;
     }
     
-    echo <<<HTML
-    <span class="flex">
-        <div id="circle-container" class="flex justify-between items-center pointer-events-none">
-            <span id="circle" class="w-4 h-4 $circleColorClass rounded-full mr-2"></span>
-        </div>
-        $status
-    </span>
+    return <<<HTML
+        <span class="flex items-end	relative bottom-4 w-32">
+            <div id="circle-container" class="flex justify-between items-center pointer-events-none">
+                <span id="circle" class="w-4 h-4 $circleColorClass rounded-full mr-2"></span>
+            </div>
+            <span class="h-5">$status</span>
+        </span>
     HTML;
 }
 ?>

@@ -1,5 +1,4 @@
 <?php
-
 abstract class TaskComponent{
 
     private string $component;
@@ -22,7 +21,7 @@ abstract class TaskComponent{
 
         private function setComponent(): void{
             
-            $this->component = "<div tabindex='0' data-state='" . $this->task['state'] ."' id='". $this->task['id'] . "' class='p-6 rounded-lg flex flex-row flex-nowrap relative group/task pb-0 focus:outline-none focus:border-purple focus:ring-2 focus:purple " . $this->handleColor() . "'>"
+            $this->component = "<div tabindex='0' data-state='" . $this->task['state'] ."' id='". $this->task['id'] . "' class='p-6 rounded-lg flex flex-row flex-nowrap relative group/task pb-0 focus:outline-none focus:border-purple focus:ring-2 focus:purple " . $this->handleColor() ."' onclick='getIds(\"" . $this->task['id'] . "\")'>"
             . "<div>"
             . $this->setTitle()
             . $this->setDescription()
