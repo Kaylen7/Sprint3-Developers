@@ -5,6 +5,9 @@ class EditController extends ApplicationController {
         $id = $this->_namedParameters['id'];
         $task = $this->database->getTask($id);
         $this->view->task = $task;
+        if(!$task){
+            throw new Exception('La tasca no existeix.');
+        }
 
         if($this->getRequest()->isPost()){
             $request = $this->getRequest();
