@@ -48,7 +48,7 @@ function showModal(title, message, buttonText, redirect) {
       const btn2 = document.createElement('button');
       btn2.textContent = buttonText[1];
       btn2.className =
-        'px-4 py-2 bg-purple text-white rounded hover:bg-blue-600 focus:outline-none'; 
+        'px-4 py-2 bg-purple text-white rounded hover:bg-black focus:outline-none'; 
       btn2.addEventListener('click', () => {
         if (redirect) closeModal(redirect);
         else closeModal();
@@ -57,7 +57,7 @@ function showModal(title, message, buttonText, redirect) {
     } else {
       const btn = document.createElement('button');
       btn.textContent = buttonText;
-      btn.className = 'px-4 py-2 bg-purple text-white rounded hover:bg-blue-600 focus:outline-none'; //
+      btn.className = 'px-4 py-2 bg-purple text-white rounded hover:bg-black focus:outline-none'; //
       btn.addEventListener('click', () => closeModal(redirect));
       buttonsContainer.appendChild(btn);
     }
