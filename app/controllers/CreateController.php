@@ -3,6 +3,7 @@ class CreateController extends ApplicationController
 {
 	public function createAction()
 	{
+
 			if ($this->getRequest()->isPost()) {
 				$title = $_POST['title'] ?? null;
 				$description = $_POST['description'] ?? null;
@@ -36,7 +37,7 @@ class CreateController extends ApplicationController
 
 				$this->database->addTask($task);
 
-				$this->view->modal = $this->showModal('¡Tasca creada!', '¡Tasca creada correctament!', 'Torna','/');
+					$this->view->modal = $this->showModal('¡Tasca creada!', '¡Tasca creada correctament!', 'Torna','/');
 			}
 	}
 	
