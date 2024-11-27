@@ -21,8 +21,33 @@ include_once($componentsPath . '/sideMenuComponent.php');
             <?php
                 new viewTaskComponent($this->task);
             ?>
+            <div class="flex mb-6">
+            <div class='mt-auto flex flex-col items-center group'>
+    <a 
+      aria-label="veure la tasca"
+      id='<?= "readBtn-id-" . $this->task['id']?>' 
+      href='<?= "/view" . "/" . $this->task['id']?>' 
+      class='bg-black text-white rounded-full p-2 
+            group-hover:bg-purple group-hover:text-white 
+            group-focus:bg-purple group-focus:text-white 
+            group-focus-within:bg-purple group-focus-within:text-white
+            focus:outline-none'
+    >
+    <i 
+      class="text-center w-6 h-5 fa-solid fa-magnifying-glass">
+    </i>
+    </a>
+    <span 
+      class='mt-1 opacity-0 text-xs 
+            group-hover:opacity-100 
+            group-focus-within:opacity-100
+            transition-opacity'
+    >
+      Veure
+    </span>
+  </div>
+            </div>
         </div>
-
         <?php include dirname(__DIR__, 1) . '/components/html/modal.phtml'; ?>
     </div>
   </div>
