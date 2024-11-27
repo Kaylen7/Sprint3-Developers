@@ -117,14 +117,15 @@ class Database extends Model {
 
     private function updateDatabase(){
         $this->tasks = array_values($this->tasks);
+
+        if($this->tasks === []){
+            throw new Exception("No s'ha pogut actualitzar la base de dades.");
+        }
+
         $baseDB = [];
         $baseDB["tasks"] = $this->tasks;
 
-        try {
-            $json = json_encode($baseDB, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
-            file_put_contents($this->fullPath, $json);
-        } catch (Exception $e){
-            echo "Error " . $e->getMessage();
-        }
+        $json = json_encode($baseDB, JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
+        file_put_contents($this->fullPath, $json);
     }
 }
