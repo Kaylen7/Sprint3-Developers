@@ -87,14 +87,13 @@ class Database extends Model {
         $this->tasks = $updated_tasks;
     }
 
-    public function removeTask(string $id): array {
-        foreach($this->tasks as $key => $task) {
-            if ($task['id'] === $id) {
+    public function removeTasks(array $ids): array {
+        foreach ($this->tasks as $key => $task) {
+            if (in_array($task['id'], $ids, true)) { 
                 unset($this->tasks[$key]);
-                $this->updateDatabase();
-                break;
             }
         }
+        $this->updateDatabase();
         return $this->tasks;
     }
 

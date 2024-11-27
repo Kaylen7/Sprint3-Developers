@@ -2,6 +2,7 @@
 
 include_once('taskComponent.php');
 include_once('interfaces/ColorInterface.php');
+include_once($componentsPath . '/stateComponent.php');
 
 class deleteModeTask extends taskComponent {
 
@@ -19,7 +20,7 @@ class deleteModeTask extends taskComponent {
 
     
     public function handleBottomBox(): string {
-        return "";
+        return renderStateComponent($this->task['state']);;
     }
     
 }

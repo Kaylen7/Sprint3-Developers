@@ -1,0 +1,50 @@
+
+<?php 
+$componentsPath =  dirname(__DIR__, 1) . '/components';
+include_once($componentsPath . '/deleteModeTask.php');
+include_once($componentsPath . '/sideMenuComponent.php');
+include_once($componentsPath . '/interfaces/DefaultColor.php');
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eliminar tasca</title>
+</head>
+
+<body class="bg-white">
+  <div class="flex h-screen">
+    <?php 
+      new sideMenuComponent('back');
+    ?>
+    <!-- MAIN DIV -->
+    <div class="flex-1 p-6 overflow-y-auto">
+      <?php 
+      include $componentsPath . '/html/mainHeader.html';
+      ?>
+      <!-- TASK GRID -->
+       <div class="flex flex-col max-w-5xl">
+        <div id="task-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl">
+          <!-- TASKS HERE -->
+
+          <?php 
+              $tasks = $this->tasks;
+              foreach($tasks as $task){
+                  new deleteModeTask($task, new DefaultColor());
+              }
+          ?>
+        </div>
+        <div onclick="deleteVerification()" class="px-4 py-2 bg-purple text-white rounded hover:bg-black focus:outline-none w-[5.5rem] mt-8 self-end	" > Eliminar </div>
+      </div>
+      
+      <?php include dirname(__DIR__, 1) . '/components/html/modal.phtml'; ?>
+    </div>
+  </div>
+  
+
+  <script src="javascripts/view.js"></script>
+</body>
+</html>
