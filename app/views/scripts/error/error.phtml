@@ -1,1 +1,29 @@
-<?php echo $this->error; ?>
+
+<?php
+$componentsPath =  dirname(__DIR__, 2) . '/scripts/components';
+include_once($componentsPath . '/sideMenuComponent.php');
+
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+</head>
+<body class="bg-white flex">
+<?php new sideMenuComponent('back'); ?>
+<div class="flex h-screen order-1 w-full">
+    
+    <div class="m-10 flex flex-row h-1/4">
+    <img src='/images/robot.svg' class='h-auto mr-2' />
+    <div class="flex flex-col align-center">
+<h1 class="text-6xl font-bold mb-4 mt-4">Error</h1>
+<p><?php echo $this->error; ?></p>
+</div>
+</div>
+</div>
+</body>
+
+</html>

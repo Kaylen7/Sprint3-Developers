@@ -1,0 +1,45 @@
+
+<?php 
+$componentsPath =  dirname(__DIR__, 1) . '/components';
+include_once($componentsPath . '/stateTask.php');
+include_once($componentsPath . '/sideMenuComponent.php');
+include_once($componentsPath . '/interfaces/StateColor.php');
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tasques</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-white">
+  <div class="flex h-screen">
+    <?php 
+      new sideMenuComponent('main');
+    ?>
+    <!-- MAIN DIV -->
+    <div class="flex-1 p-6 overflow-y-auto overflow-x-hidden">
+      <?php 
+      include $componentsPath . '/html/mainHeader.html';
+      ?>
+      <!-- TASK GRID -->
+      <div id="task-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl">
+        <!-- TASKS HERE -->
+
+        <?php 
+            $tasks = $this->tasks;
+            foreach($tasks as $task){
+                new stateTask($task, new StateColor());
+            }
+        ?>
+      </div>
+    </div>
+  </div>
+
+  <script src="javascripts/view.js"></script>
+</body>
+</html>

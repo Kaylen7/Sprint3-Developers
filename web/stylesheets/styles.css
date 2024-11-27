@@ -1,0 +1,62 @@
+:root {
+    --green: #6FC685;
+    --orange: #FFC76C;
+    --purple: #C76FA9;
+    --gray: #D9D9D9;
+}
+
+.bg-green {
+  background-color: var(--green);
+}
+
+.bg-gray {
+  background-color: var(--gray);
+}
+
+.bg-orange {
+  background-color: var(--orange);
+}
+
+.bg-purple {
+  background-color: var(--purple);
+}
+.peer.hover\:bg-purple:hover {
+  background-color: var(--purple);
+}
+
+.peer.focus\:bg-purple:focus {
+  background-color: var(--purple);
+}
+
+.group-hover\:bg-purple:hover {
+  background-color: var(--purple);
+}
+
+.focus\:purple:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: var(--purple);
+}
+
+.focus\:border-purple {
+  border-color: var(--purple)
+};
+
+#state:focus-visible {
+  outline: none; 
+  border: none; 
+}
+
+.back-icon{
+  height: 92vh;
+  margin:3% 5% 0 1%
+}
+
+.modal-position{
+  position: absolute;
+  top: 35%;
+  left: 35%;
+}
+
+.group-focus-within\:bg-purple:focus {
+  background-color: var(--purple);
+}

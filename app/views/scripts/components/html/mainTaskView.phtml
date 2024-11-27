@@ -1,0 +1,65 @@
+<h1 class="text-6xl mt-16 mb-7 font-bold">#view_title</h1>
+
+<form action="#form_action" method="POST" class="w-full">
+
+    <span class="flex flex-col my-7">
+        <label for="title" class="font-bold mb-2">Títol</label>
+        <input type="text" id="title" name="title" maxlength="70" class="bg-gray-200 rounded-[20px] h-[54px] px-[15px]"
+            placeholder_value="#task_title" required>
+    </span>
+
+    <span class="flex flex-col mt-7">
+        <label for="description" class="font-bold mb-2">Descripció</label>
+        #task_description
+    </span>
+
+    <span class="flex justify-between">
+        <span class="flex flex-col my-7">
+            <label for="created_by" class="font-bold mb-2">Creat per</label>
+            <input type="text" id="created_by" name="created_by"
+                class="bg-gray-200 rounded-[20px] w-[221px] h-[34px] px-[15px]"
+                placeholder_value="#task_created_by" required>
+        </span>
+
+        <span class="flex flex-col my-7">
+            <label for="tags" class="font-bold mb-2">Tags:</label>
+            <input type="text" id="tags" name="tags" placeholder_value="#task_tags"
+                class="bg-gray-200 rounded-[20px] w-[291px] h-[34px] px-[15px]">
+        </span>
+
+    </span>
+
+    <span class="flex">
+        <span class=" w-1/2 mt-3">
+            <span class="flex">
+                <label for="start_time" class="font-bold mr-3">De:</label>
+                <input type="datetime-local" id="start_time" name="start_time" value="#task_start_time" required class="">
+            </span>
+
+            <span class="flex">
+                <label for="end_time" class="font-bold mr-3">Fins:</label>
+                <input type="datetime-local" id="end_time" name="end_time" value="#task_end_time" required class=" rounded-[20px]">
+            </span>
+        </span>
+
+        <div class="w-1/2 flex flex-col items-start">
+            <label for="state" class="font-bold mb-2">Estat:</label>
+            <div class="relative">
+                <select id="state" name="state" required
+                    class="block w-full px-4 py-2 border border-gray-300 rounded-md border-none	"
+                    onchange="updateCircle()">
+                    #task_state
+                </select>
+
+                <div id="circle-container"
+                    class="absolute inset-0 flex justify-between items-center pointer-events-none">
+                    <span id="circle" class="w-4 h-4 bg-orange-500 rounded-full mr-2"></span>
+                </div>
+            </div>
+        </div>
+
+    </span>
+
+    <button class="my-9 bg-purple text-white rounded-[18px] w-[164px] h-[45px]" type="submit">#view_button</button>
+</form>
+</div>

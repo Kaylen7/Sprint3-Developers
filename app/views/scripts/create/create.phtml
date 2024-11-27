@@ -1,0 +1,38 @@
+<?php
+$componentsPath =  dirname(__DIR__, 2) . '/scripts/components';
+include_once($componentsPath . '/viewTaskComponent.php');
+include_once($componentsPath . '/sideMenuComponent.php');
+
+if($this->modal){
+    echo $this->modal;
+}
+
+if($this->modal){
+    echo $this->modal;
+}
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear tasca</title>
+</head>
+
+<body>
+    <div class="flex">
+        <?php
+            new sideMenuComponent('back');
+        ?>
+        <div class="flex-0  w-[568px] ml-16">
+            <?php
+                new viewTaskComponent();
+            ?>
+            </div>
+        </div>
+        <?php include dirname(__DIR__, 1) . '/components/html/modal.phtml'; ?>
+    </div>
+  </div>
+</div>
+</body>
+</html>

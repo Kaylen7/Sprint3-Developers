@@ -1,0 +1,138 @@
+<!-- MENU WITH ACTIONS AND FILTERS-->
+  <h1 class="text-3xl font-bold mb-4 text-center">Accions</h1>
+  <div class="flex flex-col flex-1">
+    <!-- CREATE -->
+    <div class="flex flex-col items-center group">
+      <a 
+        role="menuitem" 
+        aria-label="Crear tasca" 
+        href="/create"
+        class="bg-black rounded-full text-white p-3 peer
+              hover:bg-purple focus:bg-purple
+              focus:outline-none"
+        >
+        <i class="w-6 h-5 text-center fa-solid fa-plus"></i>
+      </a>
+      <span
+        class="mt-2 opacity-0 
+              peer-hover:opacity-100 peer-hover:mb-4
+              peer-focus:opacity-100 peer-focus:mb-4
+              trnsition-opacity"
+        >
+        Crear
+      </span>
+    </div>
+    <!-- DELETE -->
+    <div class="flex flex-col items-center group">
+      <a 
+        role="menuitem" 
+        aria-label="Eliminar tasca" 
+        href="/delete"
+        class="bg-black rounded-full text-white p-3 peer
+              hover:bg-purple focus:bg-purple
+              focus:outline-none"
+        >
+        <i class="w-6 h-5 text-center fa-solid fa-minus"></i>
+      </a>
+      <span
+        class="mt-2 opacity-0 
+              peer-hover:opacity-100 peer-hover:mb-4
+              peer-focus:opacity-100 peer-focus:mb-4
+              trnsition-opacity"
+        >
+        Eliminar
+      </span>
+    </div>
+    <hr />
+    <!-- FILTRES -->
+    <h1 class="text-3xl font-bold mt-4 mb-4 text-center">Filtres</h1>
+    <!-- DONE -->
+    <div class="filter flex flex-col items-center group">
+      <button 
+        role="menuitem" 
+        aria-label="Mostrar tasques acabades" 
+        id="done"
+        class="bg-green rounded-full text-white p-2 peer 
+        hover:p-4 focus:p-4
+        group-aria-[pressed=true]:p-4
+        focus:outline-none w-5 h-5"
+        >
+      </button>
+      <span class="mt-1 opacity-0 
+                  peer-hover:opacity-100 peer-hover:mb-4
+                  peer-focus:opacity-100 peer-focus:mb-4
+                  group-aria-[pressed=true]:opacity-100
+                  group-aria-[pressed=true]:mb-4
+                  transition-opacity"
+      >
+        Acabades
+      </span>
+    </div>
+    <!-- ONGOING -->
+    <div class="filter flex flex-col items-center group">
+      <button 
+        role="menuitem" 
+        aria-label="Mostrar tasques en curs" 
+        id="ongoing"
+        class="bg-orange rounded-full text-white p-2 peer 
+        hover:p-4 focus:p-4
+        group-aria-[pressed=true]:p-4
+        focus:outline-none w-5 h-5"
+        >
+      </button>
+      <span class="mt-1 opacity-0 
+                  peer-hover:opacity-100 peer-hover:mb-4
+                  peer-focus:opacity-100 peer-focus:mb-4
+                  group-aria-[pressed=true]:opacity-100
+                  group-aria-[pressed=true]:mb-4
+                  transition-opacity"
+      >
+        En curs
+      </span>
+    </div>
+    <!-- PENDING -->
+    <div class="filter flex flex-col items-center group">
+      <button 
+        role="menuitem" 
+        aria-label="Mostrar tasques pendents" 
+        id="pending"
+        class="bg-gray rounded-full text-white p-2 peer 
+        hover:p-4 focus:p-4
+        group-aria-[pressed=true]:p-4
+        focus:outline-none w-5 h-5"
+        >
+      </button>
+      <span class="mt-1 opacity-0 
+                  peer-hover:opacity-100 peer-hover:mb-4
+                  peer-focus:opacity-100 peer-focus:mb-4
+                  group-aria-[pressed=true]:opacity-100
+                  group-aria-[pressed=true]:mb-4
+                  transition-opacity"
+      >
+        Pendents
+      </span>
+    </div>
+
+    <!-- ALL -->
+    <div class="filter flex flex-col items-center group" aria-pressed="true">
+      <button 
+        role="menuitem" 
+        aria-label="Mostrar totes les tasques" 
+        id="all"
+        class="bg-purple rounded-full text-white p-2 peer 
+        hover:p-4 focus:p-4
+        group-aria-[pressed=true]:p-4
+        focus:outline-none w-5 h-5"
+        >
+      </button>
+      <span class="mt-1 opacity-0 
+                  peer-hover:opacity-100 peer-hover:mb-4
+                  peer-focus:opacity-100 peer-focus:mb-4
+                  group-aria-[pressed=true]:opacity-100
+                  group-aria-[pressed=true]:mb-4
+                  transition-opacity"
+      >
+        Totes
+      </span>
+    </div>
+  </div>
