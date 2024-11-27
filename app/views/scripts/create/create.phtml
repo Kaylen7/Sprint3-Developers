@@ -1,19 +1,18 @@
-
 <?php
-$componentsPath = dirname(__DIR__, 1) . '/components';
+$componentsPath =  dirname(__DIR__, 2) . '/scripts/components';
+include_once($componentsPath . '/viewTaskComponent.php');
+include_once($componentsPath . '/sideMenuComponent.php');
 
-if (empty($sidebarIncluded)) {
-    include_once($componentsPath . '/sideMenuComponent.php');
+if($this->modal){
+    echo $this->modal;
 }
 
 if($this->modal){
     echo $this->modal;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,86 +21,18 @@ if($this->modal){
 
 <body>
     <div class="flex">
-    <?php 
-    if (empty($sidebarIncluded)) {
-      new sideMenuComponent('back');
-    }?>
+        <?php
+            new sideMenuComponent('back');
+        ?>
         <div class="flex-0  w-[568px] ml-16">
-
-            <h1 class="text-6xl mt-16 mb-7 font-bold">Crear</h1>
-
-            <form action="/create" method="POST" class="w-full">
-
-                <span class="flex flex-col my-7">
-                    <label for="title" class="font-bold mb-2">Títol</label>
-                    <input type="text" id="title" name="title" maxlength="70" class="bg-gray-200 rounded-[20px] h-[54px] px-[15px]"
-                        placeholder="Introdueix un titol per a la tasca" required>
-                </span>
-
-                <span class="flex flex-col mt-7">
-                    <label for="description" class="font-bold mb-2">Descripció</label>
-                    <textarea id="description" name="description" maxlength="200" placeholder="Introdueix una descripció per a la tasca"
-                        class="bg-gray-200 rounded-[20px] h-[100px] px-[15px] py-[10px]" rows="4"></textarea>
-                </span>
-
-                <span class="flex justify-between">
-                    <span class="flex flex-col my-7">
-                        <label for="created_by" class="font-bold mb-2">Creat per</label>
-                        <input type="text" id="created_by" name="created_by"
-                            class="bg-gray-200 rounded-[20px] w-[221px] h-[34px] px-[15px]"
-                            placeholder="Introdueix el teu nom" required>
-                    </span>
-
-                    <span class="flex flex-col my-7">
-                        <label for="tags" class="font-bold mb-2">Tags (separat per comes):</label>
-                        <input type="text" id="tags" name="tags" placeholder="ex: treball,reporte,urgent"
-                            class="bg-gray-200 rounded-[20px] w-[291px] h-[34px] px-[15px]">
-                    </span>
-
-                </span>
-
-                <span class="flex">
-                    <span class=" w-1/2 mt-3">
-                        <span class="flex">
-                            <label for="start_time" class="font-bold mr-3">De:</label>
-                            <input type="datetime-local" id="start_time" name="start_time" required class="">
-                        </span>
-
-                        <span class="flex">
-                            <label for="end_time" class="font-bold mr-3">Fins:</label>
-                            <input type="datetime-local" id="end_time" name="end_time" required class=" rounded-[20px]">
-                        </span>
-                    </span>
-
-                    <div class="w-1/2 flex flex-col items-start">
-                        <label for="state" class="font-bold mb-2">Estat:</label>
-                        <div class="relative">
-                            <select id="state" name="state" required
-                                class="block w-full px-4 py-2 border border-gray-300 rounded-md border-none	"
-                                onchange="updateCircle()">
-                                <option value="ongoing">En curs</option>
-                                <option value="done">Complet</option>
-                                <option value="pending">Pendent</option>
-                            </select>
-
-                            <div id="circle-container"
-                                class="absolute inset-0 flex justify-between items-center pointer-events-none">
-                                <span id="circle" class="w-4 h-4 bg-orange-500 rounded-full mr-2"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                </span>
-
-                <button class="my-9 bg-purple text-white rounded-[18px] w-[164px] h-[45px]" type="submit">Crear</button>
-            </form>
+            <?php
+                new viewTaskComponent();
+            ?>
+            </div>
         </div>
-    </div>
-
-    <?php include dirname(__DIR__, 1) . '/components/html/modal.phtml'; ?>
+        <?php include dirname(__DIR__, 1) . '/components/html/modal.phtml'; ?>
     </div>
   </div>
 </div>
 </body>
-
 </html>
