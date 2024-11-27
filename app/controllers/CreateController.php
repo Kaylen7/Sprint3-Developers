@@ -14,13 +14,13 @@ class CreateController extends ApplicationController
 	
 					// Validación de campos
 					if (!$title || !$start_time || !$end_time || !$created_by || !$state) {
-							echo $this->showModal('Error!', 'Falten dades', 'Torna');
+							$this->view->modal = $this->showModal('Error!', 'Falten dades', 'Torna');
 							return;
 					}
 
 					if($start_time > $end_time){
 						
-						echo $this->showModal('Error!', 'La data de inici no pot ser posterior a la data de final', 'Torna');
+						$this->view->modal = $this->showModal('Error!', 'La data de inici no pot ser posterior a la data de final', 'Torna');
 						return;
 					}
 	
@@ -36,7 +36,7 @@ class CreateController extends ApplicationController
 	
 					$this->database->addTask($task);
 
-					echo $this->showModal('¡Tasca creada!', '¡Tasca creada correctament!', 'Torna','/');
+					$this->view->modal = $this->showModal('¡Tasca creada!', '¡Tasca creada correctament!', 'Torna','/');
 			}
 	}
 	
