@@ -15,7 +15,7 @@ include_once($componentsPath . '/stateComponent.php');
 <div class="flex h-screen order-1 w-full">
         <div class="w-10/12 ml-16 max-w-[755px]">
             <div>
-                <h1 class="text-6xl mt-16 mb-5 font-bold break-words whitespace-normal w-3/4"><?= $this->task['title'] ?></h1>
+                <h1 class="text-6xl mt-16 mb-8 font-bold break-words whitespace-normal w-3/4"><?= $this->task['title'] ?></h1>
                 
                 <?php echo renderStateComponent($this->task['state']); ?>
 
