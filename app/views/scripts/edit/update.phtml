@@ -3,6 +3,10 @@ $componentsPath =  dirname(__DIR__, 2) . '/scripts/components';
 include_once($componentsPath . '/viewTaskComponent.php');
 include_once($componentsPath . '/sideMenuComponent.php');
 
+if($this->modal){
+  echo $this->modal;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">

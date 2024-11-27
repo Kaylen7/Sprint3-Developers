@@ -5,6 +5,10 @@ $componentsPath = dirname(__DIR__, 1) . '/components';
 if (empty($sidebarIncluded)) {
     include_once($componentsPath . '/sideMenuComponent.php');
 }
+
+if($this->modal){
+    echo $this->modal;
+}
 ?>
 
 <!DOCTYPE html>
