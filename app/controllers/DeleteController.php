@@ -4,14 +4,17 @@ class DeleteController extends ApplicationController
 {
 
 	public function deleteAction(){
-		$tasks = $this->database->getAll();
-		$this->view->tasks = $tasks;
+        if ($this->getRequest()->isPost()) {
+            $this->deleteTasksAction();
+        } else {
+            $tasks = $this->database->getAll();
+		    $this->view->tasks = $tasks;
+        }
 	}
 
 	public function deleteTasksAction() {
-    header('Content-Type: application/json');
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($this->getRequest()->isPost()) {
+        header('Content-Type: application/json');
         $input = file_get_contents('php://input');
         $data = json_decode($input, true);
 

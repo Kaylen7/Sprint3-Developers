@@ -22,6 +22,7 @@ function showModal(title, message, buttonText, redirect) {
   const modalBody = document.getElementById('modalBody');
   const modalTitle = document.getElementById('modalTitle');
   const buttonsContainer = document.getElementById('buttonsContainer'); 
+  const closeModalButton = document.getElementById('closeModal');
 
   const closeModal = (redirectUrl = null) => {
     modal.classList.add('hidden');
@@ -63,6 +64,10 @@ function showModal(title, message, buttonText, redirect) {
   };
 
   const addEventListeners = () => {
+    closeModalButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      closeModal();
+    });
     window.addEventListener('click', (event) => {
       if (event.target === modal) {
         closeModal();
@@ -107,7 +112,7 @@ function getIds(id) {
 
 async function deleteTasks() {
   try {
-      const response = await fetch('/deleteTasks', {
+      const response = await fetch('/delete', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
