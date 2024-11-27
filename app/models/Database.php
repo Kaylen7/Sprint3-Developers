@@ -112,7 +112,7 @@ class Database extends Model {
     
         array_push($this->tasks, $newTask);
         $this->updateDatabase();
-        return $this->tasks;
+        return $newTask['id'];
     }
 
     private function updateDatabase(){

@@ -17,7 +17,7 @@ class CreateController extends ApplicationController
 				if (!$title || !$start_time || !$end_time || !$created_by || !$state) {
 						$this->view->modal = $this->showModal('Error!', 'Falten dades', 'Torna');
 						return;
-				}
+				};
 
 				if($start_time > $end_time){
 					
@@ -35,9 +35,7 @@ class CreateController extends ApplicationController
 						'state' => $state,
 				);
 
-				$this->database->addTask($task);
-
-					$this->view->modal = $this->showModal('¡Tasca creada!', '¡Tasca creada correctament!', 'Torna','/');
+				$this->view->modal = $this->showModal('¡Tasca creada!', '¡Tasca creada correctament!', 'Veure','/view/'.$this->database->addTask($task));
 			}
 	}
 	
