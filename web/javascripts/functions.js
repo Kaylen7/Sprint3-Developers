@@ -95,18 +95,20 @@ function deleteVerification(){
 const idsToDelete = [];
 
 function getIds(id) {
-  const element = document.getElementById(id);
-  if (!idsToDelete.includes(id)) {
-    idsToDelete.push(id);
-    element.classList.replace('bg-white', 'bg-black');
-    element.classList.add('text-white');
-  } else {
-    const index = idsToDelete.indexOf(id);
-    if (index !== -1) {
-      idsToDelete.splice(index, 1);
+  if (window.location.pathname === '/delete') {
+    const element = document.getElementById(id);
+    if (!idsToDelete.includes(id)) {
+      idsToDelete.push(id);
+      element.classList.replace('bg-white', 'bg-black');
+      element.classList.add('text-white');
+    } else {
+      const index = idsToDelete.indexOf(id);
+      if (index !== -1) {
+        idsToDelete.splice(index, 1);
+      }
+      element.classList.replace('bg-black', 'bg-white');
+      element.classList.remove('text-white');
     }
-    element.classList.replace('bg-black', 'bg-white');
-    element.classList.remove('text-white');
   }
 }
 
